@@ -25,34 +25,40 @@ function generateTimetable() {
     for (let i = 0; i < classesAvailable.length; i++) {
         timetable[i] = {
             class: classesAvailable[i].trim(),
-            subjects: [],
+            schedule: Array(slotsAvailable.length).fill('Free Slot')
         };
-        for (let j = 0; j < numSubjects; j++) {
-            const subject = document.getElementById(`subject${j}`).value;
-            const hours = document.getElementById(`hours${j}`).value;
-            timetable[i].subjects.push({ name: subject, hours: hours });
+    }
+
+    for (let j = 0; j < numSubjects; j++) {
+        const subject = document.getElementById(`subject${j}`).value;
+        const hours = document.getElementById(`hours${j}`).value;
+        
+        for (let k = 0; k < hours; k++) {
+            const classIndex = Math.floor(Math.random() * classesAvailable.length);
+            const slotIndex = Math.floor(Math.random() * slotsAvailable.length);
+            timetable[classIndex].schedule[slotIndex] = subject;
         }
     }
 
-    displayTimetable(timetable);
+    displayTimetable(timetable, slotsAvailable);
 }
 
-function displayTimetable(timetable) {
+function displayTimetable(timetable, slotsAvailable) {
     const outputDiv = document.getElementById('timetableOutput');
     outputDiv.innerHTML = ''; // Clear previous output
 
     const table = document.createElement('table');
     const headerRow = table.insertRow();
-    headerRow.insertCell().outerHTML = '<th>Class</th>';
-    timetable[0].subjects.forEach((subject, index) => {
-        headerRow.insertCell().outerHTML = `<th>${subject.name}</th>`;
+    headerRow.insertCell().outerHTML = '<th>Time</th>';
+    slotsAvailable.forEach(slot => {
+        headerRow.insertCell().outerHTML = `<th>${slot}</th>`;
     });
 
     timetable.forEach(entry => {
         const row = table.insertRow();
-        row.insertCell().innerText = entry.class;
-        entry.subjects.forEach(subject => {
-            row.insertCell().innerText = subject.hours;
+        row.insertCell().outerHTML = `<td class="time-slot">${entry.class}</td>`;
+        entry.schedule.forEach(slot => {
+            row.insertCell().outerHTML = `<td class="${slot === 'Free Slot' ? 'subject' : 'subject-occupied'}">${slot}</td>`;
         });
     });
 
