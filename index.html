@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Timetable Generator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Timetable Generator</h1>
+        <form id="timetableForm">
+            <label for="numSubjects">Number of Subjects:</label>
+            <input type="number" id="numSubjects" min="1" required>
+
+            <div id="subjectInputs"></div>
+
+            <label for="classesAvailable">Classes Available:</label>
+            <input type="text" id="classesAvailable" required>
+
+            <label for="slotsAvailable">Slots Available:</label>
+            <input type="text" id="slotsAvailable" required>
+
+            <label for="teachersAvailable">Teachers Available:</label>
+            <input type="text" id="teachersAvailable" required>
+
+            <button type="button" onclick="generateTimetable()">Generate Timetable</button>
+        </form>
+
+        <div id="timetableOutput"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
