@@ -8,20 +8,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>Timetable Generator</h1>
+        <h1>College Timetable Generator</h1>
         <form id="timetableForm">
             <label for="numSubjects">Number of Subjects:</label>
             <input type="number" id="numSubjects" min="1" required>
 
             <div id="subjectInputs"></div>
 
-            <label for="classesAvailable">Classes Available:</label>
+            <label for="classesAvailable">Classes Available (Comma Separated):</label>
             <input type="text" id="classesAvailable" required>
 
-            <label for="slotsAvailable">Slots Available:</label>
+            <label for="slotsAvailable">Slots Available (Comma Separated, e.g., P1,P2,...):</label>
             <input type="text" id="slotsAvailable" required>
 
-            <label for="teachersAvailable">Teachers Available:</label>
+            <label for="teachersAvailable">Teachers Available (Comma Separated):</label>
             <input type="text" id="teachersAvailable" required>
 
             <button type="button" onclick="generateTimetable()">Generate Timetable</button>
